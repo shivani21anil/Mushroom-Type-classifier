@@ -46,7 +46,7 @@ class prediction:
 
             ##Code changed
             #pred_data = data.drop(['Wafer'],axis=1)
-            clusters=kmeans.predict(data)#drops the first column for cluster prediction
+            clusters=kmeans.predict(data)
             data['clusters']=clusters
             clusters=data['clusters'].unique()
             result=[] # initialize blank list for storing predicitons
@@ -59,6 +59,7 @@ class prediction:
                 model_name = file_loader.find_correct_model_file(i)
                 model = file_loader.load_model(model_name)
                 for val in (model.predict(cluster_data)):
+
                     result.append(val)
             result = pandas.DataFrame(result,columns=['Predictions'])
             path="Prediction_Output_File/Predictions.csv"
